@@ -1,0 +1,19 @@
+version: '2'
+services:
+    jhispter-app:
+        image: jhispter
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://jhispter-mysql:3306/jhispter?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=jhispter-elasticsearch:9300
+        ports:
+            - 8080:8080
+    jhispter-mysql:
+        extends:
+            file: mysql.yml
+            service: jhispter-mysql
+    jhispter-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: jhispter-elasticsearch
