@@ -1,0 +1,53 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTest1Label">Create or edit a Test 1</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!test1.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="test1.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_prop1">Prop 1</label>
+            <input type="number" class="form-control" name="prop1" id="field_prop1"
+                [(ngModel)]="test1.prop1" required min="0" max="10"/>
+            <div [hidden]="!(editForm.controls.prop1?.dirty && editForm.controls.prop1?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prop1?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prop1?.errors?.min">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prop1?.errors?.max">
+                    This field cannot be more than 10.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prop1?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_prop2">Prop 2</label>
+            <input type="text" class="form-control" name="prop2" id="field_prop2"
+                [(ngModel)]="test1.prop2" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

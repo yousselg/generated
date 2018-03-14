@@ -1,0 +1,36 @@
+
+<div *ngIf="test2">
+    <h2><span>Test 2</span> {{test2.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Prop 1</span></dt>
+        <dd>
+            <span>{{test2.prop1}}</span>
+        </dd>
+        <dt><span>Prop 2</span></dt>
+        <dd>
+            <span>{{test2.prop2}}</span>
+        </dd>
+        <dt><span>Test 1</span></dt>
+        <dd>
+            <div *ngIf="test2.test1Id">
+                <a [routerLink]="['/test-1', test2.test1Id]">{{test2.test1Id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'test-2/'+ test2.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

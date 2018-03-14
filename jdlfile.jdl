@@ -1,0 +1,19 @@
+entity Test1 {
+  prop1 Integer required max(10) min(0),
+  prop2 String
+}
+
+entity Test2 {
+  prop1 Integer required max(10) min(0),
+  prop2 String
+}
+
+	
+relationship OneToMany{
+  Test1{test2} to Test2
+}
+
+	
+paginate Test1, Test2 with pagination	
+dto Test1, Test2 with mapstruct	
+service Test1, Test2 with serviceClass	
